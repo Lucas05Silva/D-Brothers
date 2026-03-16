@@ -1,20 +1,12 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# D'Brothers Pan Pizza
 
-# Run and deploy your AI Studio app
+Landing page em Next.js para os links principais da pizzaria.
 
-This contains everything you need to run your app locally.
+## Rodar localmente
 
-View your app in AI Studio: https://ai.studio/apps/a0063b33-9335-440a-bbd4-4ea943cdeec5
+1. Instale as dependencias com `npm install`
+2. Inicie o projeto com `npm run dev`
 
-## Run Locally
+## Build
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Use `npm run build` para gerar a versao de producao.
