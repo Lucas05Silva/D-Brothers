@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+:root {
+  --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-outfit: "Trebuchet MS", "Arial Narrow", Arial, sans-serif;
+}
