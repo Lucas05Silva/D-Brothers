@@ -4,8 +4,9 @@ import { motion } from 'motion/react';
 import { Gift, Globe, MapPin, Pizza } from 'lucide-react';
 import Image from 'next/image';
 
-const SITE_URL =
+const MENU_URL =
   'https://www.dbrotherspanpizzacg.com.br/?type=PRODUCTS&cupom=BREADINSTA';
+const SITE_URL = 'https://www.dbrotherspanpizzacg.com.br/';
 const WHATSAPP_URL = 'https://wa.me/556792737508';
 const MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=Av.+Afonso+Pena,+4000+Jd.+Estados';
@@ -22,16 +23,57 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const BackgroundPattern = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,_#1f0907_0%,_#090909_55%,_#000000_100%)]" />
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,_rgba(198,40,40,0.18)_0%,_rgba(0,0,0,0.98)_42%,_#000000_100%)]" />
     <div className="absolute inset-0 opacity-[0.05] text-white">
-      <Pizza className="absolute top-[10%] left-[5%] h-24 w-24 -rotate-12" strokeWidth={1} />
-      <Pizza className="absolute top-[30%] right-[14%] h-16 w-16 rotate-[22deg]" strokeWidth={1} />
-      <Pizza className="absolute bottom-[18%] right-[6%] h-32 w-32 rotate-45" strokeWidth={1} />
-      <Pizza className="absolute bottom-[10%] left-[10%] h-20 w-20 -rotate-[18deg]" strokeWidth={1} />
+      <Pizza className="absolute left-[6%] top-[12%] h-20 w-20 -rotate-12" strokeWidth={1} />
+      <Pizza className="absolute right-[10%] top-[26%] h-14 w-14 rotate-[20deg]" strokeWidth={1} />
+      <Pizza className="absolute bottom-[20%] right-[8%] h-28 w-28 rotate-[34deg]" strokeWidth={1} />
+      <Pizza className="absolute bottom-[10%] left-[12%] h-18 w-18 -rotate-[16deg]" strokeWidth={1} />
     </div>
   </div>
 );
+
+type ButtonProps = {
+  href: string;
+  label: string;
+  primary?: boolean;
+  icon: React.ReactNode;
+};
+
+function LinkButton({ href, label, primary = false, icon }: ButtonProps) {
+  const baseClasses =
+    'group relative flex w-full items-center gap-4 overflow-hidden rounded-[22px] border px-5 py-4 text-white transition-all duration-150';
+  const toneClasses = primary
+    ? 'border-[#C62828] bg-[#C62828] shadow-[0_10px_30px_rgba(198,40,40,0.28)] hover:shadow-[0_14px_34px_rgba(198,40,40,0.4)]'
+    : 'border-[#2A2A2A] bg-black shadow-[0_10px_24px_rgba(0,0,0,0.34)] hover:border-[#3A3A3A] hover:shadow-[0_14px_28px_rgba(0,0,0,0.46)]';
+  const iconBoxClasses = primary
+    ? 'border border-white/15 bg-black/10'
+    : 'border border-[#2F2F2F] bg-[#111111]';
+
+  return (
+    <motion.a
+      whileHover={{ y: -3, scale: 1.01 }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ duration: 0.12, ease: 'easeOut' }}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${baseClasses} ${toneClasses}`}
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.08)_50%,transparent_100%)] opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+      <div className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl ${iconBoxClasses}`}>
+        {icon}
+      </div>
+      <span className="relative z-10 text-[17px] font-semibold tracking-[0.02em] font-[family-name:var(--font-outfit)]">
+        {label}
+      </span>
+      {primary ? (
+        <div className="pointer-events-none absolute inset-0 rounded-[22px] shadow-[0_0_34px_rgba(198,40,40,0.24)]" />
+      ) : null}
+    </motion.a>
+  );
+}
 
 export default function LinkInBio() {
   const containerVariants = {
@@ -39,7 +81,7 @@ export default function LinkInBio() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.04,
+        staggerChildren: 0.05,
       },
     },
   };
@@ -62,17 +104,17 @@ export default function LinkInBio() {
       <BackgroundPattern />
 
       <motion.div
-        className="relative z-10 flex w-full max-w-[420px] flex-col items-center"
+        className="relative z-10 flex w-full max-w-[430px] flex-col items-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div variants={itemVariants} className="mb-10 flex w-full flex-col items-center">
           <div className="relative mb-6">
-            <div className="absolute inset-0 rounded-full bg-[#C62828] opacity-45 blur-[40px]" />
-            <div className="relative z-10 h-[120px] w-[120px] overflow-hidden rounded-full border-[4px] border-zinc-900 bg-zinc-900 shadow-2xl">
+            <div className="absolute inset-0 rounded-full bg-[#C62828] opacity-45 blur-[42px]" />
+            <div className="relative z-10 h-[124px] w-[124px] overflow-hidden rounded-full border-[4px] border-[#1A1A1A] bg-black shadow-2xl">
               <Image
-                src="https://picsum.photos/seed/pizza-logo/240/240"
+                src="https://picsum.photos/seed/pizza-logo/248/248"
                 alt="D'Brothers Pan Pizza Logo"
                 fill
                 className="object-cover"
@@ -81,90 +123,55 @@ export default function LinkInBio() {
             </div>
           </div>
 
-          <h1 className="mb-2 text-center text-[32px] font-bold tracking-tight text-white font-[family-name:var(--font-outfit)] drop-shadow-lg">
+          <h1 className="mb-2 text-center text-[32px] font-bold tracking-tight text-white font-[family-name:var(--font-outfit)]">
             D&apos;Brothers Pan Pizza
           </h1>
 
-          <div className="mb-8 flex flex-col items-center gap-2.5">
-            <p className="flex items-center gap-2 text-center text-[16px] font-medium tracking-wide text-zinc-300">
-              <Pizza className="h-[18px] w-[18px] text-[#E53935]" /> Pan Pizza artesanal
-            </p>
-          </div>
+          <p className="mb-8 flex items-center gap-2 text-center text-[15px] font-medium tracking-[0.08em] text-white/74 uppercase">
+            <Pizza className="h-[17px] w-[17px] text-[#C62828]" /> Pan Pizza artesanal
+          </p>
 
           <motion.div
-            whileHover={{ scale: 1.02, y: -2 }}
+            whileHover={{ scale: 1.015, y: -2 }}
             transition={{ duration: 0.12, ease: 'easeOut' }}
-            className="relative flex w-full max-w-[340px] items-center gap-4 overflow-hidden rounded-2xl border border-[#C62828]/30 bg-gradient-to-br from-[#C62828]/20 to-[#4a0e0e]/40 px-6 py-4 text-[14px] font-medium text-zinc-100 shadow-[0_0_20px_rgba(198,40,40,0.15)]"
+            className="relative flex w-full max-w-[350px] items-center gap-4 overflow-hidden rounded-[22px] border border-[#2B1010] bg-[#090909] px-6 py-4 text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
           >
-            <div className="absolute inset-0 bg-white/5 opacity-0 transition-opacity duration-150 hover:opacity-100" />
-            <div className="rounded-full border border-[#ff5252]/20 bg-gradient-to-br from-[#E53935] to-[#9b1c1c] p-2.5 shadow-lg">
+            <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(198,40,40,0.75)_50%,transparent_100%)]" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#3A1414] bg-[#C62828]">
               <Gift className="h-5 w-5 text-white" />
             </div>
-            <span className="text-[15px] tracking-wide font-[family-name:var(--font-outfit)]">
+            <span className="text-[15px] tracking-[0.03em] font-[family-name:var(--font-outfit)]">
               Ganhe um Breadstick no 1o pedido
             </span>
           </motion.div>
         </motion.div>
 
-        <motion.div className="mb-14 flex w-full flex-col gap-4">
-          <motion.a
-            variants={itemVariants}
-            whileHover={{ scale: 1.02, y: -3 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.12, ease: 'easeOut' }}
+        <motion.div variants={itemVariants} className="mb-14 flex w-full flex-col gap-4">
+          <LinkButton
             href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex w-full items-center overflow-hidden rounded-[24px] border border-[#ff5252]/30 bg-gradient-to-b from-[#E53935] to-[#C62828] p-4 font-semibold text-white shadow-[0_10px_30px_rgba(198,40,40,0.3)] transition-all duration-150 hover:shadow-[0_15px_40px_rgba(198,40,40,0.5)]"
-          >
-            <div className="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
-            <div className="relative z-10 mr-4 rounded-2xl bg-white/20 p-3 shadow-inner backdrop-blur-md">
-              <WhatsAppIcon className="h-6 w-6" />
-            </div>
-            <span className="relative z-10 text-[17px] tracking-wide font-[family-name:var(--font-outfit)] drop-shadow-md">
-              Falar no WhatsApp
-            </span>
-          </motion.a>
-
-          <motion.a
-            variants={itemVariants}
-            whileHover={{ scale: 1.02, y: -3 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.12, ease: 'easeOut' }}
+            label="Falar no WhatsApp"
+            primary
+            icon={<WhatsAppIcon className="h-6 w-6 text-white" />}
+          />
+          <LinkButton
+            href={MENU_URL}
+            label="Cardapio"
+            icon={<Pizza className="h-6 w-6 text-white" />}
+          />
+          <LinkButton
             href={MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex w-full items-center overflow-hidden rounded-[24px] border border-zinc-700/50 bg-gradient-to-b from-zinc-800 to-zinc-900 p-4 font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-150 hover:border-zinc-500/50 hover:shadow-[0_15px_40px_rgba(0,0,0,0.7)]"
-          >
-            <div className="relative z-10 mr-4 rounded-2xl border border-zinc-700 bg-zinc-800/80 p-3 shadow-inner transition-colors duration-150 group-hover:bg-zinc-700">
-              <MapPin className="h-6 w-6 text-zinc-300 transition-colors duration-150 group-hover:text-white" />
-            </div>
-            <span className="relative z-10 text-[17px] tracking-wide font-[family-name:var(--font-outfit)]">
-              Localizacao da pizzaria
-            </span>
-          </motion.a>
-
-          <motion.a
-            variants={itemVariants}
-            whileHover={{ scale: 1.02, y: -3 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.12, ease: 'easeOut' }}
+            label="Localizacao da pizzaria"
+            icon={<MapPin className="h-6 w-6 text-white" />}
+          />
+          <LinkButton
             href={SITE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex w-full items-center overflow-hidden rounded-[24px] bg-gradient-to-b from-zinc-100 to-zinc-300 p-4 font-semibold text-black shadow-[0_10px_30px_rgba(255,255,255,0.1)] transition-all duration-150 hover:shadow-[0_15px_40px_rgba(255,255,255,0.2)]"
-          >
-            <div className="relative z-10 mr-4 rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm transition-colors duration-150 group-hover:bg-zinc-50">
-              <Globe className="h-6 w-6 text-zinc-800" />
-            </div>
-            <span className="relative z-10 text-[17px] tracking-wide font-[family-name:var(--font-outfit)]">
-              Nosso site
-            </span>
-          </motion.a>
+            label="Nosso site"
+            icon={<Globe className="h-6 w-6 text-white" />}
+          />
         </motion.div>
 
         <motion.div variants={itemVariants} className="mt-auto">
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-zinc-600">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-white/34">
             (c) 2026 D&apos;Brothers Pan Pizza
           </p>
         </motion.div>
